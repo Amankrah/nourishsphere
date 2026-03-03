@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NouriSphère — Business Model</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a2e;
+    --warm: #f7f5f0;
+    --forest: #1b4332;
+    --green: #40916c;
+    --green-light: #d8f3dc;
+    --gold: #d4a373;
+    --gold-light: #fefae0;
+    --earth: #283618;
+    --soft-gray: #e8e4dd;
+    --mid-gray: #8a8578;
+    --blue: #1d3557;
+    --blue-light: #e8f0fe;
+    --coral: #e07a5f;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Outfit',sans-serif; background:var(--warm); color:var(--ink); line-height:1.6; -webkit-font-smoothing:antialiased; }
+
+  .hero {
+    background: linear-gradient(155deg, #1b4332 0%, #1a1a2e 50%, #283618 100%);
+    color: white; padding: 72px 40px 84px; position: relative; overflow: hidden;
+  }
+  .hero::before { content:''; position:absolute; top:-30%; right:-10%; width:500px; height:500px; background:radial-gradient(circle, rgba(212,163,115,0.12) 0%, transparent 70%); border-radius:50%; }
+  .hero-inner { max-width:880px; margin:0 auto; position:relative; z-index:1; }
+  .hero-badge { display:inline-block; font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--gold); border:1px solid rgba(212,163,115,0.3); padding:6px 16px; border-radius:20px; margin-bottom:24px; font-weight:500; }
+  .hero h1 { font-family:'DM Serif Display',serif; font-size:clamp(30px,4.5vw,50px); line-height:1.2; margin-bottom:18px; font-weight:400; }
+  .hero h1 em { color:var(--gold); font-style:italic; }
+  .hero p { font-size:16px; color:rgba(255,255,255,0.65); max-width:620px; line-height:1.75; }
+
+  .section { max-width:880px; margin:0 auto; padding:56px 40px; }
+  .section-label { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--green); margin-bottom:10px; font-weight:600; }
+  .section h2 { font-family:'DM Serif Display',serif; font-size:28px; font-weight:400; margin-bottom:14px; line-height:1.3; }
+  .section > p.intro { color:#555; max-width:660px; margin-bottom:36px; font-size:15px; line-height:1.75; }
+  .divider { border:none; border-top:1px solid var(--soft-gray); margin:0 40px; max-width:800px; }
+
+  /* MISSION-MODEL BOX */
+  .mission-box {
+    background:white; border:1px solid var(--soft-gray); border-radius:16px; padding:40px; margin-bottom:32px; position:relative;
+  }
+  .mission-box::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg, var(--forest), var(--green), var(--gold)); border-radius:16px 16px 0 0; }
+  .mission-box h3 { font-family:'DM Serif Display',serif; font-size:22px; font-weight:400; margin-bottom:14px; color:var(--forest); }
+  .mission-box p { font-size:14px; color:#555; line-height:1.75; margin-bottom:12px; }
+  .mission-box .statement {
+    font-family:'Source Serif 4',serif; font-size:17px; line-height:1.8; color:#333;
+    padding-left:20px; border-left:3px solid var(--gold); margin-bottom:20px;
+  }
+
+  /* REVENUE STREAMS */
+  .stream-card {
+    background:white; border:1px solid var(--soft-gray); border-radius:14px; padding:32px; margin-bottom:20px;
+    display:grid; grid-template-columns:72px 1fr; gap:24px; transition:box-shadow 0.3s ease;
+  }
+  .stream-card:hover { box-shadow:0 8px 30px rgba(0,0,0,0.06); }
+  .stream-icon {
+    width:60px; height:60px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:26px; flex-shrink:0;
+  }
+  .stream-icon.grants { background:#e8f5e9; }
+  .stream-icon.saas { background:var(--blue-light); }
+  .stream-icon.research { background:#fce4ec; }
+  .stream-icon.consulting { background:var(--gold-light); }
+  .stream-icon.data { background:#e0f7fa; }
+  .stream-icon.community { background:#f3e5f5; }
+
+  .stream-content h4 { font-size:17px; font-weight:600; margin-bottom:3px; }
+  .stream-meta { font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--mid-gray); margin-bottom:10px; font-weight:500; }
+  .stream-content .desc { font-size:14px; color:#555; line-height:1.75; margin-bottom:14px; }
+
+  .stream-details {
+    display:grid; grid-template-columns:1fr 1fr; gap:12px;
+  }
+  .stream-detail {
+    background:#fafaf7; border-radius:8px; padding:12px 14px; border:1px solid #eee;
+  }
+  .stream-detail .label { font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--mid-gray); margin-bottom:3px; font-weight:600; }
+  .stream-detail .value { font-size:13px; color:var(--ink); font-weight:500; }
+
+  /* TIER TABLE */
+  .tier-grid {
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; margin-bottom:32px;
+  }
+  .tier-card {
+    background:white; border:1px solid var(--soft-gray); border-radius:14px; padding:28px 24px; text-align:center;
+    transition: box-shadow 0.3s ease;
+  }
+  .tier-card:hover { box-shadow:0 8px 30px rgba(0,0,0,0.06); }
+  .tier-card.featured { border-color:var(--green); border-width:2px; position:relative; }
+  .tier-card.featured::before {
+    content:'Most Popular'; position:absolute; top:-10px; left:50%; transform:translateX(-50%);
+    background:var(--green); color:white; font-size:10px; letter-spacing:1px; text-transform:uppercase;
+    padding:3px 12px; border-radius:10px; font-weight:600;
+  }
+  .tier-card .tier-name { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--mid-gray); margin-bottom:6px; font-weight:600; }
+  .tier-card .tier-price { font-family:'DM Serif Display',serif; font-size:32px; color:var(--ink); margin-bottom:4px; }
+  .tier-card .tier-period { font-size:12px; color:var(--mid-gray); margin-bottom:16px; }
+  .tier-card .tier-audience { font-size:13px; font-weight:500; color:var(--forest); margin-bottom:12px; }
+  .tier-features { text-align:left; list-style:none; }
+  .tier-features li { font-size:12.5px; color:#555; padding:5px 0; border-bottom:1px solid #f5f3ef; display:flex; gap:8px; align-items:flex-start; }
+  .tier-features li::before { content:'✓'; color:var(--green); font-weight:700; flex-shrink:0; }
+
+  /* FINANCIAL PROJECTIONS */
+  .fin-table {
+    width:100%; border-collapse:collapse; font-size:13px; margin-bottom:24px; background:white; border-radius:12px; overflow:hidden; border:1px solid var(--soft-gray);
+  }
+  .fin-table th {
+    text-align:left; padding:14px 16px; font-size:11px; letter-spacing:1px; text-transform:uppercase;
+    color:var(--mid-gray); border-bottom:2px solid var(--soft-gray); font-weight:600; background:#fafaf7;
+  }
+  .fin-table td { padding:12px 16px; border-bottom:1px solid #f0ede8; color:#555; }
+  .fin-table tr:hover td { background:#fdfcfa; }
+  .fin-table .total td { font-weight:600; color:var(--ink); background:var(--green-light); border-bottom:none; }
+  .fin-table .highlight { color:var(--forest); font-weight:600; }
+
+  /* BAR CHART */
+  .chart-bars { margin-bottom:32px; }
+  .chart-bar-group { margin-bottom:16px; }
+  .chart-label { display:flex; justify-content:space-between; margin-bottom:4px; }
+  .chart-label .name { font-size:13px; font-weight:500; }
+  .chart-label .amount { font-size:13px; color:var(--mid-gray); font-weight:500; }
+  .chart-track { height:10px; background:#f0ede8; border-radius:5px; overflow:hidden; }
+  .chart-fill { height:100%; border-radius:5px; transition:width 0.8s ease; }
+
+  /* PHASE TIMELINE */
+  .phase-timeline { position:relative; margin-bottom:40px; }
+  .phase-line { position:absolute; left:28px; top:0; bottom:0; width:2px; background:var(--soft-gray); }
+  .phase-item { display:grid; grid-template-columns:56px 1fr; gap:20px; margin-bottom:32px; position:relative; }
+  .phase-dot {
+    width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    font-size:13px; font-weight:700; z-index:1;
+  }
+  .phase-dot.p1 { background:var(--green-light); color:var(--forest); }
+  .phase-dot.p2 { background:var(--blue-light); color:var(--blue); }
+  .phase-dot.p3 { background:var(--gold-light); color:var(--earth); }
+  .phase-box {
+    background:white; border:1px solid var(--soft-gray); border-radius:12px; padding:24px;
+  }
+  .phase-box h4 { font-size:16px; font-weight:600; margin-bottom:4px; }
+  .phase-box .period { font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--mid-gray); margin-bottom:10px; font-weight:500; }
+  .phase-box p { font-size:13px; color:#555; line-height:1.7; }
+
+  /* FUNDING MAP */
+  .funding-card {
+    background:white; border:1px solid var(--soft-gray); border-radius:14px; padding:28px; margin-bottom:16px;
+  }
+  .funding-card h4 { font-size:15px; font-weight:600; margin-bottom:6px; display:flex; align-items:center; gap:8px; }
+  .funding-card .amount { font-family:'DM Serif Display',serif; font-size:20px; color:var(--forest); margin-bottom:8px; }
+  .funding-card p { font-size:13px; color:#555; line-height:1.7; }
+  .funding-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+
+  /* DARK SECTION */
+  .dark-section {
+    background:var(--forest); color:white; border-radius:16px; padding:40px; margin-bottom:32px;
+  }
+  .dark-section h3 { font-family:'DM Serif Display',serif; font-size:24px; color:var(--gold); margin-bottom:14px; }
+  .dark-section p { font-size:14px; line-height:1.8; color:rgba(255,255,255,0.8); margin-bottom:14px; }
+  .dark-section .metric-row { display:grid; grid-template-columns:repeat(auto-fit, minmax(140px,1fr)); gap:14px; margin-top:20px; }
+  .dark-section .metric { background:rgba(255,255,255,0.08); border-radius:10px; padding:16px; text-align:center; }
+  .dark-section .metric .num { font-family:'DM Serif Display',serif; font-size:28px; color:white; }
+  .dark-section .metric .lbl { font-size:11px; color:rgba(255,255,255,0.5); letter-spacing:1px; text-transform:uppercase; margin-top:4px; }
+
+  /* MOAT */
+  .moat-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:24px; }
+  .moat-item { background:white; border:1px solid var(--soft-gray); border-radius:12px; padding:20px; }
+  .moat-item h5 { font-size:14px; font-weight:600; margin-bottom:6px; display:flex; align-items:center; gap:8px; }
+  .moat-item p { font-size:13px; color:#666; line-height:1.6; }
+
+  .footer { background:var(--ink); color:rgba(255,255,255,0.4); padding:32px 40px; text-align:center; font-size:12px; }
+
+  @media (max-width:700px) {
+    .hero { padding:48px 24px 56px; }
+    .section { padding:40px 24px; }
+    .stream-card { grid-template-columns:1fr; }
+    .stream-details { grid-template-columns:1fr; }
+    .tier-grid { grid-template-columns:1fr; }
+    .funding-grid { grid-template-columns:1fr; }
+    .moat-grid { grid-template-columns:1fr; }
+    .phase-item { grid-template-columns:1fr; }
+    .phase-line { display:none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">NouriSphère — Business Model</div>
+    <h1>A Fundable Model for <em>Environmental Nutrition Intelligence</em></h1>
+    <p>A diversified, sustainable revenue architecture for a Quebec-registered non-profit serving individuals, researchers, and policymakers across Canada and the EU — built on the EcoDish365 platform.</p>
+  </div>
+</div>
+
+<!-- MODEL PHILOSOPHY -->
+<div class="section">
+  <div class="section-label">Model Philosophy</div>
+  <h2>Why a Non-Profit — and Why It's Fundable</h2>
+  <p class="intro">NouriSphère's non-profit structure is not a compromise — it is a strategic advantage. The integration of nutrition, environment, and health data serves a public good that commercial incentives will never build. Here's why the model works.</p>
+
+  <div class="mission-box">
+    <h3>The Strategic Logic</h3>
+    <div class="statement">
+      Commercial nutrition apps optimize for engagement and subscription revenue. Commercial LCA tools optimize for enterprise licensing. Neither has an incentive to integrate both — the resulting product serves a smaller market at higher complexity. <strong>NouriSphère fills the gap that the market structurally cannot.</strong> This is precisely what non-profits are designed to do, and precisely what funders — from CIHR to Horizon Europe — are looking to fund.
+    </div>
+    <p>The model below is designed around <strong>diversified sustainability</strong>: no single revenue stream accounts for more than 35% of total funding, creating resilience against any single source drying up. It blends mission-aligned earned revenue (platform subscriptions, research services) with grant funding and institutional partnerships — the same architecture that sustains organizations like the Mozilla Foundation, Wikipedia/Wikimedia, and the EAT-Lancet Commission.</p>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- REVENUE STREAMS -->
+<div class="section">
+  <div class="section-label">Revenue Architecture</div>
+  <h2>Six Revenue Streams</h2>
+  <p class="intro">Each stream is designed to serve a specific audience while reinforcing the others. Grant funding bootstraps the platform; earned revenue sustains it; research partnerships validate and extend it.</p>
+
+  <!-- STREAM 1: GRANTS -->
+  <div class="stream-card">
+    <div class="stream-icon grants">🏛️</div>
+    <div class="stream-content">
+      <div class="stream-meta">Stream 1 — Foundation Revenue · Year 1–3 Primary</div>
+      <h4>Research Grants &amp; Government Funding</h4>
+      <div class="desc">
+        The primary funding source in the early phase, targeting the deep pool of government and institutional grants explicitly designed for this exact intersection. NouriSphère sits at the convergence of multiple well-funded priority areas: sustainable food systems, digital health innovation, behavioral change, and climate action. The dual-PhD McGill leadership team provides the academic credibility that grant reviewers require, while the existing EcoDish365 platform demonstrates proof of concept — a critical differentiator in competitive grant applications.
+      </div>
+      <div class="stream-details">
+        <div class="stream-detail">
+          <div class="label">Canada — Priority Targets</div>
+          <div class="value">CIHR (health outcomes), NSERC (environmental data), SSHRC (behavioral change), CFI (digital infrastructure), Tri-Agency Interdisciplinary Fund, NRC-IRAP, FRQS (Quebec)</div>
+        </div>
+        <div class="stream-detail">
+          <div class="label">EU — Priority Targets</div>
+          <div class="value">Horizon Europe Cluster 6 (€968M in 2025 alone for food, bioeconomy, environment), FutureFoodS Partnership, EIT Food, EU4Health Programme, Horizon Europe Health Cluster (digital health tools)</div>
+        </div>
+        <div class="stream-detail">
+          <div class="label">International / Private</div>
+          <div class="value">Wellcome Trust (nutrition & health), Gates Foundation (nutrition data), Bloomberg Philanthropies (health policy), Rockefeller Foundation (food systems), IDRC (Canadian international development)</div>
+        </div>
+        <div class="stream-detail">
+          <div class="label">Year 3 Target</div>
+          <div class="value">$400K–$800K annually from 3–5 active grants (average $150K–$200K each)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STREAM 2: PLATFORM SUBSCRIPTIONS -->
+  <div class="stream-card">
+    <div class="stream-icon saas">💻</div>
+    <div class="stream-content">
+      <div class="stream-meta">Stream 2 — Earned Revenue · Year 2+ Growth Engine</div>
+      <h4>Tiered Platform Subscriptions (Freemium Model)</h4>
+      <div class="desc">
+        The EcoDish365 platform becomes NouriSphère's earned-revenue engine through a carefully designed freemium tier structure. The free tier serves the public mission (everyone deserves access to basic food-health-environment information) while the paid tiers serve power users, professionals, and institutions who need deeper analytics. This is a mission-aligned monetization strategy: free access expands impact; paid access funds sustainability.
+      </div>
+    </div>
+  </div>
+
+  <!-- TIER PRICING -->
+  <div class="tier-grid">
+    <div class="tier-card">
+      <div class="tier-name">Explorer</div>
+      <div class="tier-price">Free</div>
+      <div class="tier-period">forever</div>
+      <div class="tier-audience">Individuals &amp; Students</div>
+      <ul class="tier-features">
+        <li>CNF food search &amp; basic nutrition data</li>
+        <li>HSR score for any food</li>
+        <li>Simplified environmental indicator (carbon only)</li>
+        <li>3 meals/week tracking</li>
+        <li>Basic dietary pattern feedback</li>
+        <li>Community access</li>
+      </ul>
+    </div>
+    <div class="tier-card featured">
+      <div class="tier-name">Professional</div>
+      <div class="tier-price">$12</div>
+      <div class="tier-period">/month (billed annually)</div>
+      <div class="tier-audience">Health Professionals &amp; Educators</div>
+      <ul class="tier-features">
+        <li>All Explorer features, plus:</li>
+        <li>Full 18-category LCA environmental analysis</li>
+        <li>All scoring systems (HSR, FCS, HEFI, HENI)</li>
+        <li>Unlimited meal tracking &amp; sharing</li>
+        <li>Monetized environmental costs (CAD/EUR)</li>
+        <li>DALY-based health impact modeling</li>
+        <li>Client/patient meal review tools</li>
+        <li>Export reports (PDF, CSV)</li>
+      </ul>
+    </div>
+    <div class="tier-card">
+      <div class="tier-name">Institutional</div>
+      <div class="tier-price">Custom</div>
+      <div class="tier-period">annual contract</div>
+      <div class="tier-audience">Universities, Hospitals, Gov. Agencies</div>
+      <ul class="tier-features">
+        <li>All Professional features, plus:</li>
+        <li>Multi-user admin dashboard</li>
+        <li>API access for data integration</li>
+        <li>Custom regional LCA profiles</li>
+        <li>White-label embedding options</li>
+        <li>Cohort-level analytics &amp; reporting</li>
+        <li>Priority support &amp; onboarding</li>
+        <li>Custom scoring model integration</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- STREAM 3: RESEARCH PARTNERSHIPS -->
+  <div class="stream-card">
+    <div class="stream-icon research">🔬</div>
+    <div class="stream-content">
+      <div class="stream-meta">Stream 3 — Earned Revenue · Year 2+ Scaling</div>
+      <h4>Research Partnership &amp; Data Services</h4>
+      <div class="desc">
+        NouriSphère's integrated dataset is uniquely valuable to researchers worldwide. Rather than selling raw data (which conflicts with open-access principles), the model offers value-added research services: pre-linked analytical datasets, custom analyses, and collaborative research partnerships where NouriSphère provides the data infrastructure and partner institutions provide domain expertise and co-funding.
+      </div>
+      <div class="stream-details">
+        <div class="stream-detail">
+          <div class="label">Service A</div>
+          <div class="value">Custom Dataset Preparation — pre-linked nutrition-environment-health datasets for specific research questions ($5K–$25K per engagement)</div>
+        </div>
+        <div class="stream-detail">
+          <div class="label">Service B</div>
+          <div class="value">Collaborative Grant Partnerships — NouriSphère as data partner on external research grants, receiving a percentage of grant budgets for platform services (15–25% of data component)</div>
+        </div>
+        <div class="stream-detail">
+          <div class="label">Service C</div>
+          <div class="value">API Access for Researchers — metered access to integrated data through structured API endpoints ($200–$500/month per research group)</div>
+        </div>
+        <div class="stream-detail">
+          <div class="label">Year 3 Target</div>
+          <div class="value">$100K–$250K annually from 10–20 research partnerships</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STREAM 4: CONSULTING -->
+  <div class="stream-card">
+    <div class="stream-icon consulting">📋</div>
+    <div class="stream-content">
+      <div class="stream-meta">Stream 4 — Earned Revenue · Year 2+ Steady</div>
+      <h4>Policy Advisory &amp; Consulting Services</h4>
+      <div class="desc">
+        Government bodies and international organizations developing nutrition-environment policies need the kind of integrated analysis that NouriSphère uniquely provides. This stream monetizes the platform's analytical capabilities and the leadership team's academic expertise through paid advisory engagements — a high-margin, high-credibility revenue source that simultaneously advances the mission.
+      </div>
+      <div class="stream-details">
+        <div class="stream-detail">
+          <div class="label">Target Clients</div>
+          <div class="value">Health Canada, INSPQ (Quebec public health), EU DG SANTE, FAO, WHO nutrition division, provincial/national dietary guideline committees, municipal food policy councils</div>
+        </div>
+        <div class="stream-detail">
+          <div class="label">Service Model</div>
+          <div class="value">Scenario modeling (e.g., "What if Canada's Food Guide added environmental criteria?"), policy impact assessments, evidence briefs, expert testimony — $150–$300/hr or fixed project fees ($10K–$75K)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STREAM 5: EDUCATIONAL LICENSING -->
+  <div class="stream-card">
+    <div class="stream-icon data">🎓</div>
+    <div class="stream-content">
+      <div class="stream-meta">Stream 5 — Earned Revenue · Year 2+ Recurring</div>
+      <h4>Educational Licensing &amp; Training</h4>
+      <div class="desc">
+        Universities teaching nutrition, environmental science, public health, and food policy need teaching tools that reflect the integrated reality of these fields. NouriSphère offers institutional licensing that gives entire departments access to the platform, plus structured curriculum modules and certification programs for professionals.
+      </div>
+      <div class="stream-details">
+        <div class="stream-detail">
+          <div class="label">University Licensing</div>
+          <div class="value">Annual departmental access: $2K–$8K/year depending on size. Target: 20 universities by Year 3 across Canada, UK, France, Netherlands, Germany</div>
+        </div>
+        <div class="stream-detail">
+          <div class="label">Professional Certification</div>
+          <div class="value">"Certified Environmental Nutrition Analyst" program — $300–$500 per participant. Online, self-paced, McGill-affiliated. Continuing education credits for dietitians.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STREAM 6: COMMUNITY & CORPORATE -->
+  <div class="stream-card">
+    <div class="stream-icon community">🤝</div>
+    <div class="stream-content">
+      <div class="stream-meta">Stream 6 — Supporting Revenue · Year 3+</div>
+      <h4>Corporate Wellness &amp; Sponsorships</h4>
+      <div class="desc">
+        Mission-aligned corporate partnerships where companies sponsor free platform access for underserved communities in exchange for ESG reporting credentials and brand association. Not advertising — NouriSphère will never sell user data or display ads. Instead, corporations fund specific program components (e.g., "10,000 free Professional accounts for low-income families in Quebec, powered by [Sponsor]").
+      </div>
+      <div class="stream-details">
+        <div class="stream-detail">
+          <div class="label">Model</div>
+          <div class="value">Named sponsorship tiers: $25K (Community Partner), $75K (Impact Partner), $150K+ (Founding Partner). Annual renewable. Sponsor receives impact reports with anonymized outcomes data.</div>
+        </div>
+        <div class="stream-detail">
+          <div class="label">Target Sponsors</div>
+          <div class="value">Grocery chains (Metro, Loblaws, Carrefour), health insurers (Desjardins, Manulife), food producers with sustainability commitments, B-Corp certified companies</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- FINANCIAL PROJECTIONS -->
+<div class="section">
+  <div class="section-label">Financial Projections</div>
+  <h2>5-Year Revenue Forecast</h2>
+  <p class="intro">Conservative projections based on comparable non-profit digital platforms, realistic grant capture rates (15–20% of applications), and modest subscription conversion assumptions (3–5% free-to-paid).</p>
+
+  <table class="fin-table">
+    <thead>
+      <tr>
+        <th>Revenue Stream</th>
+        <th>Year 1</th>
+        <th>Year 2</th>
+        <th>Year 3</th>
+        <th>Year 4</th>
+        <th>Year 5</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Research Grants &amp; Gov. Funding</td>
+        <td class="highlight">$200K</td>
+        <td class="highlight">$450K</td>
+        <td class="highlight">$650K</td>
+        <td>$700K</td>
+        <td>$600K</td>
+      </tr>
+      <tr>
+        <td>Platform Subscriptions</td>
+        <td>$5K</td>
+        <td>$35K</td>
+        <td class="highlight">$120K</td>
+        <td class="highlight">$280K</td>
+        <td class="highlight">$450K</td>
+      </tr>
+      <tr>
+        <td>Research Partnerships &amp; Data</td>
+        <td>$10K</td>
+        <td>$60K</td>
+        <td>$150K</td>
+        <td>$220K</td>
+        <td>$300K</td>
+      </tr>
+      <tr>
+        <td>Policy Advisory &amp; Consulting</td>
+        <td>$15K</td>
+        <td>$50K</td>
+        <td>$100K</td>
+        <td>$150K</td>
+        <td>$200K</td>
+      </tr>
+      <tr>
+        <td>Educational Licensing &amp; Training</td>
+        <td>$0</td>
+        <td>$20K</td>
+        <td>$60K</td>
+        <td>$120K</td>
+        <td>$180K</td>
+      </tr>
+      <tr>
+        <td>Corporate Sponsorships</td>
+        <td>$0</td>
+        <td>$25K</td>
+        <td>$75K</td>
+        <td>$150K</td>
+        <td>$200K</td>
+      </tr>
+      <tr class="total">
+        <td>Total Revenue</td>
+        <td>$230K</td>
+        <td>$640K</td>
+        <td>$1.16M</td>
+        <td>$1.62M</td>
+        <td>$1.93M</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- REVENUE MIX VISUAL -->
+  <div class="mission-box" style="margin-top:8px">
+    <h3>Revenue Mix Shift — Grant-to-Earned Transition</h3>
+    <p style="margin-bottom:20px;">The critical trajectory: grants dominant in Year 1 (87%) shifting to earned revenue dominant by Year 5 (69%). This is the sustainability signal that funders want to see — their investment catalyzes self-sustaining operations, not perpetual dependence.</p>
+
+    <div class="chart-bars">
+      <div class="chart-bar-group">
+        <div class="chart-label"><span class="name">Year 1 — Grant-Dependent</span><span class="amount">87% grants / 13% earned</span></div>
+        <div style="display:flex; gap:2px;">
+          <div style="flex:87; height:12px; background:var(--green); border-radius:6px 0 0 6px;"></div>
+          <div style="flex:13; height:12px; background:var(--gold); border-radius:0 6px 6px 0;"></div>
+        </div>
+      </div>
+      <div class="chart-bar-group">
+        <div class="chart-label"><span class="name">Year 3 — Balanced</span><span class="amount">56% grants / 44% earned</span></div>
+        <div style="display:flex; gap:2px;">
+          <div style="flex:56; height:12px; background:var(--green); border-radius:6px 0 0 6px;"></div>
+          <div style="flex:44; height:12px; background:var(--gold); border-radius:0 6px 6px 0;"></div>
+        </div>
+      </div>
+      <div class="chart-bar-group">
+        <div class="chart-label"><span class="name">Year 5 — Earned-Revenue Led</span><span class="amount">31% grants / 69% earned</span></div>
+        <div style="display:flex; gap:2px;">
+          <div style="flex:31; height:12px; background:var(--green); border-radius:6px 0 0 6px;"></div>
+          <div style="flex:69; height:12px; background:var(--gold); border-radius:0 6px 6px 0;"></div>
+        </div>
+      </div>
+    </div>
+    <p style="font-size:12px; color:var(--mid-gray);"><span style="display:inline-block; width:12px; height:12px; background:var(--green); border-radius:3px; vertical-align:middle; margin-right:4px;"></span> Grant Funding &nbsp;&nbsp;<span style="display:inline-block; width:12px; height:12px; background:var(--gold); border-radius:3px; vertical-align:middle; margin-right:4px;"></span> Earned Revenue</p>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- COST STRUCTURE -->
+<div class="section">
+  <div class="section-label">Cost Structure</div>
+  <h2>Where the Money Goes</h2>
+  <p class="intro">Lean operations leveraging the existing EcoDish365 platform and McGill infrastructure. The leadership team's university salary means the non-profit avoids the largest startup cost — founder compensation — in early years.</p>
+
+  <table class="fin-table">
+    <thead>
+      <tr>
+        <th>Cost Category</th>
+        <th>Year 1</th>
+        <th>Year 3</th>
+        <th>Year 5</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Platform Development &amp; Engineering</td>
+        <td>$80K</td>
+        <td>$250K</td>
+        <td>$400K</td>
+        <td>2 devs → 4 devs + UX. EU regionalization, API build</td>
+      </tr>
+      <tr>
+        <td>Data Science &amp; Research Staff</td>
+        <td>$40K</td>
+        <td>$180K</td>
+        <td>$300K</td>
+        <td>Graduate RAs → full-time data scientists. LCA updates</td>
+      </tr>
+      <tr>
+        <td>Cloud Infrastructure &amp; Hosting</td>
+        <td>$15K</td>
+        <td>$50K</td>
+        <td>$100K</td>
+        <td>Scales with users. AWS/Azure non-profit credits Year 1</td>
+      </tr>
+      <tr>
+        <td>Marketing &amp; Community</td>
+        <td>$10K</td>
+        <td>$60K</td>
+        <td>$120K</td>
+        <td>Content, conferences, community manager</td>
+      </tr>
+      <tr>
+        <td>Operations &amp; Admin</td>
+        <td>$20K</td>
+        <td>$80K</td>
+        <td>$140K</td>
+        <td>Legal, accounting, non-profit compliance, insurance</td>
+      </tr>
+      <tr>
+        <td>Travel &amp; Partnerships</td>
+        <td>$15K</td>
+        <td>$40K</td>
+        <td>$60K</td>
+        <td>EU partner visits, conferences, policy convenings</td>
+      </tr>
+      <tr class="total">
+        <td>Total Costs</td>
+        <td>$180K</td>
+        <td>$660K</td>
+        <td>$1.12M</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="dark-section">
+    <h3>Key Financial Metrics</h3>
+    <p>NouriSphère achieves operational surplus by Year 2 and maintains healthy margins as it scales. The non-profit structure means surpluses are reinvested into platform development, research, and expanding free access — not distributed to shareholders.</p>
+    <div class="metric-row">
+      <div class="metric">
+        <div class="num">78%</div>
+        <div class="lbl">Year 1 Burn Rate</div>
+      </div>
+      <div class="metric">
+        <div class="num">$500K</div>
+        <div class="lbl">Year 3 Surplus</div>
+      </div>
+      <div class="metric">
+        <div class="num">$810K</div>
+        <div class="lbl">Year 5 Surplus</div>
+      </div>
+      <div class="metric">
+        <div class="num">42%</div>
+        <div class="lbl">Year 5 Margin</div>
+      </div>
+      <div class="metric">
+        <div class="num">18 mo</div>
+        <div class="lbl">Runway at Launch</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- GROWTH PHASES -->
+<div class="section">
+  <div class="section-label">Growth Roadmap</div>
+  <h2>Three-Phase Execution Plan</h2>
+  <p class="intro">A phased approach that matches revenue generation with capability building — each phase funded by the previous phase's success.</p>
+
+  <div class="phase-timeline">
+    <div class="phase-line"></div>
+
+    <div class="phase-item">
+      <div class="phase-dot p1">P1</div>
+      <div class="phase-box">
+        <h4>Foundation &amp; Validation</h4>
+        <div class="period">Months 0–12 · Target Revenue: $230K</div>
+        <p>
+          <strong>Register NouriSphère as Quebec non-profit.</strong> Secure 2–3 foundation grants (CIHR, NSERC, FRQS) using EcoDish365 as proof of concept. Hire first developer and data scientist (graduate RAs from McGill). Launch free tier with 1,000 beta users. Publish first integrated environmental nutrition paper using platform data. Establish EU research partnership (1 university). Begin policy advisory engagement with Health Canada or INSPQ. Apply for Horizon Europe Cluster 6 as associated Canadian partner.
+        </p>
+      </div>
+    </div>
+
+    <div class="phase-item">
+      <div class="phase-dot p2">P2</div>
+      <div class="phase-box">
+        <h4>Scaling &amp; EU Expansion</h4>
+        <div class="period">Months 12–36 · Target Revenue: $640K → $1.16M</div>
+        <p>
+          <strong>Launch paid Professional tier.</strong> Reach 10,000 free users, 500 paid subscribers. Secure Horizon Europe grant (either direct or as partner on consortium). Build EU-regionalized LCA data (starting with France, Netherlands, Germany). Launch university licensing pilot with 5–10 institutions. Establish formal partnerships with 3 EU research groups. Hire community manager and begin content marketing. Launch certification program. Develop API for research partners. Begin corporate sponsorship outreach.
+        </p>
+      </div>
+    </div>
+
+    <div class="phase-item">
+      <div class="phase-dot p3">P3</div>
+      <div class="phase-box">
+        <h4>Sustainability &amp; Category Leadership</h4>
+        <div class="period">Months 36–60 · Target Revenue: $1.62M → $1.93M</div>
+        <p>
+          <strong>Earned revenue exceeds grant funding.</strong> Reach 50,000+ users, 2,500+ paid subscribers. 20+ university licenses active. Institutional tier adopted by 3–5 government agencies. Published 10+ peer-reviewed papers using platform data. NouriSphère cited in policy documents. EU presence self-sustaining through local partnerships and Horizon Europe continuation. Launch Nutri-Score and GDPR-compliant EU version. Platform recognized as the reference standard for integrated environmental nutrition analysis.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- FUNDING STRATEGY -->
+<div class="section">
+  <div class="section-label">Immediate Funding Strategy</div>
+  <h2>The First $500K — Where It Comes From</h2>
+  <p class="intro">The most critical question for any funder: how does NouriSphère get from idea to operational? Here's the concrete path to first-year funding.</p>
+
+  <div class="funding-grid">
+    <div class="funding-card">
+      <h4>🇨🇦 CIHR Project Grant</h4>
+      <div class="amount">$100K–$150K / year (3 years)</div>
+      <p>Frame: "Digital intervention for dietary behavioral change using integrated nutritional-environmental feedback." The health outcomes angle (HENI/DALY modeling) maps directly to CIHR's mandate. McGill PI with dual PhD is a strong applicant profile. Spring and Fall competition cycles.</p>
+    </div>
+    <div class="funding-card">
+      <h4>🇨🇦 NSERC Alliance Grant</h4>
+      <div class="amount">$50K–$100K / year (3 years)</div>
+      <p>Frame: "Environmental life-cycle assessment integration for consumer food decision tools." Requires an industry partner (e.g., a grocery chain or food company) — which also seeds Stream 6 corporate relationships. Continuous intake.</p>
+    </div>
+    <div class="funding-card">
+      <h4>🇨🇦 FRQS (Quebec)</h4>
+      <div class="amount">$30K–$60K / year</div>
+      <p>Frame: "Quebec-based digital platform for population health and environmental nutrition." FRQS supports Quebec-based health researchers. Strengthens provincial registration narrative. Complements federal grants.</p>
+    </div>
+    <div class="funding-card">
+      <h4>🇨🇦 CFI Innovation Fund</h4>
+      <div class="amount">$50K–$200K (one-time)</div>
+      <p>Frame: "Research infrastructure for integrated environmental nutrition data." CFI funds digital research infrastructure at universities — NouriSphère as a shared national research tool. Requires institutional matching (McGill provides).</p>
+    </div>
+    <div class="funding-card">
+      <h4>🇪🇺 Horizon Europe Cluster 6</h4>
+      <div class="amount">€200K–€500K (as consortium partner)</div>
+      <p>Frame: Partner on a "Sustainable and healthy diets with digital applications" call (open now, deadline April 2026). Canadian entities can participate as associated partners. FOODITY project precedent shows EU appetite for exactly this type of platform. NouriSphère provides the data infrastructure; EU partners provide local validation.</p>
+    </div>
+    <div class="funding-card">
+      <h4>🌍 EIT Food</h4>
+      <div class="amount">€50K–€150K</div>
+      <p>Frame: "Consumer-facing environmental nutrition intelligence tool for the EU market." EIT Food specifically funds innovation that connects consumers to sustainable food choices. Application via an EU institutional partner. Accelerator and innovation programs available.</p>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- COMPETITIVE MOAT -->
+<div class="section">
+  <div class="section-label">Competitive Advantage</div>
+  <h2>Why NouriSphère Wins</h2>
+  <p class="intro">Defensibility isn't about patents — it's about compounding advantages that get stronger with time and scale.</p>
+
+  <div class="moat-grid">
+    <div class="moat-item">
+      <h5>🔗 Data Integration Moat</h5>
+      <p>The core product — linking 5,000+ foods across 150+ nutritional metrics, 18 LCA categories, and 4+ validated scoring systems — represents years of data engineering that any new entrant would need to replicate from scratch.</p>
+    </div>
+    <div class="moat-item">
+      <h5>🎓 Academic Credibility</h5>
+      <p>A dual-PhD McGill professor as founder provides instant legitimacy in grant applications, journal publications, and policy advisory. This cannot be hired or acquired — it must be built over a career.</p>
+    </div>
+    <div class="moat-item">
+      <h5>📚 Network Effects</h5>
+      <p>Every researcher who publishes using NouriSphère data creates a citation that attracts more researchers. Every policy advisory engagement creates a reference that attracts more government clients. The platform's value compounds with adoption.</p>
+    </div>
+    <div class="moat-item">
+      <h5>🏛️ Non-Profit Trust</h5>
+      <p>Government agencies and academic institutions prefer non-profit partners for data-sensitive health research. The non-profit structure is a competitive advantage in grant applications and institutional sales that for-profit competitors cannot match.</p>
+    </div>
+    <div class="moat-item">
+      <h5>🌍 First-Mover in Category</h5>
+      <p>NouriSphère is creating "environmental nutrition intelligence" as a category. No existing tool integrates all three dimensions (nutrition + environment + health outcomes). Being first defines the standards others must conform to.</p>
+    </div>
+    <div class="moat-item">
+      <h5>🔄 Behavioral Data Flywheel</h5>
+      <p>Anonymized, aggregated user meal data becomes a unique research asset — how populations actually eat vs. how guidelines say they should. This behavioral dataset is impossible to build without a consumer-facing platform and gets richer with every meal logged.</p>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- RISK MITIGATION -->
+<div class="section">
+  <div class="section-label">Risk Management</div>
+  <h2>Key Risks &amp; Mitigations</h2>
+  <p class="intro">Every fundable business model acknowledges what can go wrong and shows the plan to handle it.</p>
+
+  <table class="fin-table">
+    <thead>
+      <tr>
+        <th style="width:25%">Risk</th>
+        <th style="width:15%">Likelihood</th>
+        <th style="width:15%">Impact</th>
+        <th>Mitigation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Grant applications rejected</strong></td>
+        <td>Medium</td>
+        <td>High (Year 1)</td>
+        <td>Submit to 8–10 grants simultaneously across CIHR, NSERC, SSHRC, FRQS. Industry standard: 15–20% success rate means 2–3 awards expected. Stagger deadlines for continuous pipeline.</td>
+      </tr>
+      <tr>
+        <td><strong>Low subscription conversion</strong></td>
+        <td>Medium</td>
+        <td>Medium</td>
+        <td>Conservative 3% conversion assumed (industry avg: 2–5% for freemium). Subscription revenue not relied upon until Year 3. Continuous A/B testing on tier boundaries. Professional tier targets health professionals with employer-reimbursable budgets.</td>
+      </tr>
+      <tr>
+        <td><strong>EU expansion slower than planned</strong></td>
+        <td>Medium</td>
+        <td>Low-Medium</td>
+        <td>Canada-first strategy means core operations are self-sustaining without EU revenue. EU expansion is additive. Partner-led model (EU institutions lead local adaptation) reduces NouriSphère's direct EU costs.</td>
+      </tr>
+      <tr>
+        <td><strong>Commercial competitor builds similar tool</strong></td>
+        <td>Low</td>
+        <td>Medium</td>
+        <td>Non-profit trust advantage in institutional sales. Academic publication record creates citation-based switching costs. Data integration depth requires years to replicate. Open-data commitment builds community loyalty that proprietary tools can't match.</td>
+      </tr>
+      <tr>
+        <td><strong>Key-person risk (founding PI)</strong></td>
+        <td>Low</td>
+        <td>High</td>
+        <td>Build leadership team of 3+ by Year 2 with complementary expertise. Document all methodologies and data pipelines. Advisory board provides continuity. Non-profit board governance ensures organizational persistence beyond any individual.</td>
+      </tr>
+      <tr>
+        <td><strong>Data quality/regulatory</strong></td>
+        <td>Low</td>
+        <td>Medium</td>
+        <td>CNF is government-maintained; LCA data uses peer-reviewed ReCiPe methodology. GDPR compliance built-in from launch for EU users. Quebec's Bill 25 (privacy law) alignment. No personal health data stored without explicit consent.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<hr class="divider">
+
+<!-- IMPACT METRICS -->
+<div class="section" style="padding-bottom:64px;">
+  <div class="section-label">Impact Framework</div>
+  <h2>How We Measure Success</h2>
+  <p class="intro">Non-profit funders don't just ask "will you make money?" — they ask "will you make a difference?" NouriSphère reports against both financial KPIs and mission-impact metrics.</p>
+
+  <div class="dark-section">
+    <h3>5-Year Impact Targets</h3>
+    <p>These are the outcomes that appear in every grant report, annual impact statement, and board presentation — the proof that NouriSphère justifies every dollar invested.</p>
+    <div class="metric-row">
+      <div class="metric"><div class="num">50K+</div><div class="lbl">Active Users</div></div>
+      <div class="metric"><div class="num">10+</div><div class="lbl">Peer-Reviewed Papers</div></div>
+      <div class="metric"><div class="num">5+</div><div class="lbl">Policy Citations</div></div>
+      <div class="metric"><div class="num">20+</div><div class="lbl">University Partners</div></div>
+      <div class="metric"><div class="num">2</div><div class="lbl">Countries Active</div></div>
+    </div>
+    <div class="metric-row" style="margin-top:14px;">
+      <div class="metric"><div class="num">15%</div><div class="lbl">User Diet Quality Improvement</div></div>
+      <div class="metric"><div class="num">12%</div><div class="lbl">User Environmental Footprint Reduction</div></div>
+      <div class="metric"><div class="num">6 mo+</div><div class="lbl">Median Behavioral Change Sustained</div></div>
+      <div class="metric"><div class="num">$1.9M</div><div class="lbl">Annual Revenue (Year 5)</div></div>
+    </div>
+  </div>
+
+  <div class="mission-box" style="margin-top:24px;">
+    <h3>The Ask</h3>
+    <div class="statement">
+      NouriSphère is seeking <strong>$250K–$400K in Year 1 funding</strong> — through a combination of research grants and foundational support — to register the non-profit, hire the first two technical team members, launch the free-tier platform to 1,000 users, and establish the Canadian and EU research partnerships that will unlock Years 2–5 growth. The existing EcoDish365 platform (live, functional, with 5,000+ foods and 150+ metrics integrated) means this is not a "build from scratch" investment — it is a "scale what already works" investment.
+    </div>
+    <p>With $250K–$400K, NouriSphère reaches operational sustainability within 24 months and self-sustaining earned revenue dominance within 48 months. The return on investment is measured not in equity multiples, but in lives improved, emissions reduced, and policy transformed — the outcomes that matter most.</p>
+  </div>
+</div>
+
+<div class="footer">
+  NouriSphère — Business Model · Confidential Strategic Document · February 2026
+</div>
+
+</body>
+</html>

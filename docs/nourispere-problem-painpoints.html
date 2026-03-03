@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NouriSphère — Problem Statement & Pain Points</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a2e;
+    --warm: #f7f5f0;
+    --forest: #1b4332;
+    --green: #40916c;
+    --gold: #d4a373;
+    --parchment: #fefae0;
+    --earth: #283618;
+    --soft-gray: #e8e4dd;
+    --mid-gray: #8a8578;
+    --danger: #9b2226;
+    --danger-light: #fdf0f0;
+    --warning: #bb3e03;
+    --warning-light: #fef7ed;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--warm);
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(160deg, #1b4332 0%, #1a1a2e 60%, #283618 100%);
+    color: white;
+    padding: 72px 40px 88px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    right: -15%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(212,163,115,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-badge {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(212,163,115,0.3);
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 28px;
+    font-weight: 500;
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(32px, 4.5vw, 52px);
+    line-height: 1.2;
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
+  .hero h1 em { color: var(--gold); font-style: italic; }
+  .hero p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.65);
+    max-width: 600px;
+    line-height: 1.75;
+  }
+
+  /* SECTION */
+  .section {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 56px 40px;
+  }
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  .section h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 30px;
+    font-weight: 400;
+    margin-bottom: 16px;
+    line-height: 1.3;
+  }
+  .section > p.intro {
+    color: #555;
+    max-width: 640px;
+    margin-bottom: 36px;
+    font-size: 15px;
+    line-height: 1.75;
+  }
+  .divider {
+    border: none;
+    border-top: 1px solid var(--soft-gray);
+    margin: 0 40px;
+    max-width: 780px;
+  }
+
+  /* THE CORE PROBLEM */
+  .problem-core {
+    background: white;
+    border: 1px solid var(--soft-gray);
+    border-radius: 16px;
+    padding: 44px;
+    margin-bottom: 36px;
+    position: relative;
+  }
+  .problem-core::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--forest), var(--green), var(--gold));
+    border-radius: 16px 16px 0 0;
+  }
+  .problem-core h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 16px;
+    color: var(--forest);
+  }
+  .problem-core .statement {
+    font-family: 'Source Serif 4', serif;
+    font-size: 19px;
+    line-height: 1.8;
+    color: #333;
+    margin-bottom: 24px;
+    padding-left: 20px;
+    border-left: 3px solid var(--gold);
+  }
+  .problem-core .evidence {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.7;
+  }
+  .problem-core .evidence strong {
+    color: var(--ink);
+  }
+
+  /* STAT CALLOUTS */
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .stat-card {
+    background: white;
+    border: 1px solid var(--soft-gray);
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+  }
+  .stat-card .number {
+    font-family: 'DM Serif Display', serif;
+    font-size: 36px;
+    color: var(--danger);
+    margin-bottom: 4px;
+  }
+  .stat-card .unit {
+    font-size: 14px;
+    color: var(--danger);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .stat-card .label {
+    font-size: 12px;
+    color: var(--mid-gray);
+    line-height: 1.5;
+  }
+
+  /* PAIN POINT CARDS */
+  .pain-card {
+    background: white;
+    border: 1px solid var(--soft-gray);
+    border-radius: 14px;
+    padding: 36px;
+    margin-bottom: 24px;
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 24px;
+    transition: box-shadow 0.3s ease;
+  }
+  .pain-card:hover {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+  }
+  .pain-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+  .pain-icon.individual { background: #fdf0f0; }
+  .pain-icon.researcher { background: #eef4ff; }
+  .pain-icon.policy { background: #f0fdf4; }
+  .pain-icon.system { background: #fef7ed; }
+
+  .pain-content h4 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .pain-audience {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--mid-gray);
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+  .pain-content .desc {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.75;
+    margin-bottom: 16px;
+  }
+  .pain-content .consequence {
+    background: var(--danger-light);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: var(--danger);
+    line-height: 1.6;
+  }
+  .pain-content .consequence::before {
+    content: '→ Consequence: ';
+    font-weight: 600;
+  }
+
+  /* NOURI RESPONSE */
+  .nouri-response {
+    background: linear-gradient(135deg, #f0fdf4 0%, #fefae0 100%);
+    border: 1px solid #d4edda;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--forest);
+    line-height: 1.6;
+  }
+  .nouri-response::before {
+    content: '✦ NouriSphère addresses this: ';
+    font-weight: 600;
+  }
+
+  /* GAP VISUALIZATION */
+  .gap-visual {
+    background: white;
+    border: 1px solid var(--soft-gray);
+    border-radius: 14px;
+    padding: 36px;
+    margin-bottom: 32px;
+  }
+  .gap-visual h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    margin-bottom: 24px;
+  }
+  .gap-bar-group {
+    margin-bottom: 20px;
+  }
+  .gap-bar-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 6px;
+  }
+  .gap-bar-label .name {
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .gap-bar-label .status {
+    font-size: 11px;
+    color: var(--mid-gray);
+  }
+  .gap-bar-track {
+    height: 8px;
+    background: #f0ede8;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .gap-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.8s ease;
+  }
+  .gap-bar-fill.red { background: var(--danger); }
+  .gap-bar-fill.orange { background: var(--warning); }
+  .gap-bar-fill.yellow { background: #e9c46a; }
+  .gap-bar-fill.green { background: var(--green); }
+
+  /* SYNTHESIS */
+  .synthesis-box {
+    background: var(--forest);
+    color: white;
+    border-radius: 16px;
+    padding: 44px;
+    margin-top: 16px;
+  }
+  .synthesis-box h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    margin-bottom: 16px;
+    color: var(--gold);
+  }
+  .synthesis-box p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 16px;
+  }
+  .synthesis-box .highlight {
+    font-family: 'Source Serif 4', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: white;
+    line-height: 1.7;
+    padding: 20px 24px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 10px;
+    border-left: 3px solid var(--gold);
+    margin-top: 20px;
+  }
+
+  /* FOOTER */
+  .footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.4);
+    padding: 32px 40px;
+    text-align: center;
+    font-size: 12px;
+  }
+
+  @media (max-width: 640px) {
+    .hero { padding: 48px 24px 56px; }
+    .section { padding: 40px 24px; }
+    .problem-core { padding: 28px 24px; }
+    .pain-card { grid-template-columns: 1fr; gap: 16px; padding: 28px 24px; }
+    .stat-row { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">NouriSphère — Strategic Foundation</div>
+    <h1>The Problem We Exist to <em>Solve</em></h1>
+    <p>A research-grounded articulation of the core problem, the pain points across every audience, and why the world urgently needs an integrated environmental nutrition platform.</p>
+  </div>
+</div>
+
+<!-- THE CORE PROBLEM -->
+<div class="section">
+  <div class="section-label">The Core Problem</div>
+  <h2>A $20 Trillion Failure of Integration</h2>
+  <p class="intro">The global food system is simultaneously the leading driver of preventable disease and one of the largest contributors to environmental destruction — yet the tools, data, and decision frameworks for nutrition, health, and environmental impact remain completely siloed.</p>
+
+  <div class="problem-core">
+    <h3>The Problem Statement</h3>
+    <div class="statement">
+      Every day, billions of food decisions are made in the dark. People choose what to eat without knowing how it will affect their health over time. Researchers study nutrition, environmental impact, and clinical outcomes in isolated silos that never converge. Policymakers craft dietary guidelines without integrated environmental cost data, and environmental policy without nutritional consequence modeling. <strong>No single system exists that unifies nutritional science, environmental life-cycle impact, and clinical health outcomes into one decision framework</strong> — leaving individuals powerless, research fragmented, and policy incomplete.
+    </div>
+    <div class="evidence">
+      <strong>The evidence is clear:</strong> Poor-quality diets are the leading risk factor for disease globally, contributing to one in five deaths worldwide. At the same time, the food system generates roughly one-third of global greenhouse gas emissions, drives freshwater scarcity, and accelerates biodiversity loss. The cost of this dual crisis — human health damage plus environmental degradation from how we eat — approaches <strong>$20 trillion annually</strong>, more than double the direct cost of global food consumption itself. These are not two separate crises. They are one crisis, artificially divided by the boundaries of academic disciplines, government ministries, and app categories.
+    </div>
+  </div>
+
+  <!-- KEY STATISTICS -->
+  <div class="stat-row">
+    <div class="stat-card">
+      <div class="number">1 in 5</div>
+      <div class="unit">deaths globally</div>
+      <div class="label">are attributable to poor-quality diets — the single largest modifiable risk factor for disease</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">~33%</div>
+      <div class="unit">of global GHG</div>
+      <div class="label">emissions come from the food system — agriculture, processing, transport, and waste</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">2B+</div>
+      <div class="unit">people affected</div>
+      <div class="label">by malnutrition globally — undernutrition coexisting with overweight and diet-related NCDs</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">~$20T</div>
+      <div class="unit">annual cost</div>
+      <div class="label">total economic burden of poor nutrition and its cascading health and environmental impacts</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- PAIN POINTS: INDIVIDUALS -->
+<div class="section">
+  <div class="section-label">Pain Points by Audience</div>
+  <h2>For Individuals &amp; Families</h2>
+  <p class="intro">The people making daily food decisions — the most frequent and most consequential micro-choices for both personal health and planetary impact.</p>
+
+  <div class="pain-card">
+    <div class="pain-icon individual">🧩</div>
+    <div class="pain-content">
+      <div class="pain-audience">Pain Point #1 — Individuals</div>
+      <h4>The Fragmented Information Problem</h4>
+      <div class="desc">
+        A person who wants to eat well for their body <em>and</em> the planet must currently cross-reference multiple disconnected sources: a calorie tracker for macros, a separate app for environmental footprint, medical guidelines from their doctor for a chronic condition, and government dietary recommendations that don't mention environmental impact at all. The mental load is unsustainable. Most people give up and default to habit, convenience, or price — none of which optimize for health or sustainability.
+      </div>
+      <div class="consequence">People who are motivated to change their diet face cognitive overload and decision fatigue. The intention-behavior gap widens — research shows this gap is most severe for habitual behaviors like eating, where over a third of users abandon nutrition apps within months.</div>
+      <div class="nouri-response">A single platform that shows the nutritional quality score (HSR, FCS), dietary pattern assessment (HEFI), clinical health impact (HENI in DALYs), and environmental cost (18 LCA categories, monetized) for every food and every meal — in one view, at the point of decision.</div>
+    </div>
+  </div>
+
+  <div class="pain-card">
+    <div class="pain-icon individual">⚖️</div>
+    <div class="pain-content">
+      <div class="pain-audience">Pain Point #2 — Individuals</div>
+      <h4>The False Trade-Off Perception</h4>
+      <div class="desc">
+        Most people believe they must choose between eating healthy <em>or</em> eating sustainably — that plant-based equals healthy, or that environmentally friendly food is expensive and inaccessible. Without data, people operate on misconceptions. Some "healthy" foods have devastating environmental footprints. Some environmentally excellent foods are nutritionally poor. Without integrated scoring, there is no way to identify the foods that genuinely win on both dimensions.
+      </div>
+      <div class="consequence">Consumers make suboptimal choices based on incomplete mental models, either sacrificing health for perceived sustainability or ignoring environmental impact entirely because "at least it's healthy." Neither outcome is acceptable.</div>
+      <div class="nouri-response">Side-by-side nutritional and environmental scoring per food item — with monetized environmental costs in CAD — lets users see, for the first time, which foods genuinely perform well on both axes and which involve real trade-offs.</div>
+    </div>
+  </div>
+
+  <div class="pain-card">
+    <div class="pain-icon individual">💔</div>
+    <div class="pain-content">
+      <div class="pain-audience">Pain Point #3 — Individuals</div>
+      <h4>The Behavioral Change Failure Loop</h4>
+      <div class="desc">
+        Existing nutrition apps focus almost exclusively on calorie counting and macro tracking — a reductive approach that research shows can actually promote maladaptive behaviors, especially in young people. Less than half of nutrition apps are grounded in any behavioral theory. The result: people track obsessively for weeks, see no meaningful health outcome connection, and quit. Only 15% of users in clinical studies sustained dietary behavior change beyond 6 months. The apps fail because they measure inputs (what you ate) without connecting them to outcomes (what it's doing to your health and your planet).
+      </div>
+      <div class="consequence">A cycle of app adoption → short-term tracking → disillusionment → abandonment → guilt — repeated across millions of users, wasting motivation and eroding trust in digital health tools as a category.</div>
+      <div class="nouri-response">By connecting every meal to validated clinical outcome indicators (HENI/DALY-based health impact) and tangible environmental costs, NouriSphère gives users outcome-level feedback, not just input tracking. Every meal becomes a measurable act with visible consequences — the foundation for sustained behavioral change.</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- PAIN POINTS: RESEARCHERS -->
+<div class="section">
+  <h2>For Researchers &amp; Nutrition Scientists</h2>
+  <p class="intro">The academics and clinical researchers working at the intersection of food science, public health, and environmental science — often unable to bridge these disciplines due to tool and data limitations.</p>
+
+  <div class="pain-card">
+    <div class="pain-icon researcher">🔬</div>
+    <div class="pain-content">
+      <div class="pain-audience">Pain Point #4 — Researchers</div>
+      <h4>The Siloed Data Infrastructure</h4>
+      <div class="desc">
+        A researcher studying the health-environment efficiency of diets must currently pull from at least four separate, unlinked databases: national nutrient composition files (like Canada's CNF), environmental LCA datasets (often paywalled or region-locked), validated nutritional scoring systems (HSR, Nutri-Score, FCS — each with different methodologies), and health outcome data (GBD, DALY estimates). Linking these requires months of data engineering before a single hypothesis can be tested. A Nature Food paper described this as a fundamental barrier to operationalizing food system monitoring.
+      </div>
+      <div class="consequence">Research that should take weeks takes years. Cross-disciplinary studies remain rare — published literature on dietary change under a consistent SDG framework is "almost non-existent." The most important questions at the nutrition-environment-health intersection go unanswered because the infrastructure to ask them doesn't exist.</div>
+      <div class="nouri-response">5,000+ foods pre-linked across 150+ nutritional metrics, 18 environmental LCA categories, and multiple validated scoring systems (HSR, FCS, HEFI, HENI) — a unified research-ready dataset that eliminates months of data preparation and enables genuinely integrated analyses from day one.</div>
+    </div>
+  </div>
+
+  <div class="pain-card">
+    <div class="pain-icon researcher">📊</div>
+    <div class="pain-content">
+      <div class="pain-audience">Pain Point #5 — Researchers</div>
+      <h4>The Validation &amp; Reproducibility Crisis</h4>
+      <div class="desc">
+        When researchers do manage to link nutrition and environmental data, they typically build custom, one-off analytical pipelines that are neither standardized nor reproducible. Each research group uses different LCA methodologies, different nutrient databases, different health impact models. Comparing results across studies becomes nearly impossible. The field cannot build cumulative knowledge when every team is working from a different data foundation.
+      </div>
+      <div class="consequence">Slow scientific progress, duplicated effort, and policy recommendations that rest on incomparable evidence bases. Grant funding is consumed by infrastructure-building rather than discovery.</div>
+      <div class="nouri-response">A shared, transparent, validated analytical platform with standardized methodologies (ReCiPe 2016 midpoint LCA, Canadian regionalization, consistent scoring algorithms) — enabling reproducible research that the entire field can build upon.</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- PAIN POINTS: POLICY -->
+<div class="section">
+  <h2>For Policymakers &amp; Public Health Organizations</h2>
+  <p class="intro">The government bodies, NGOs, and international organizations responsible for dietary guidelines, food procurement standards, and the regulatory frameworks that shape what populations eat.</p>
+
+  <div class="pain-card">
+    <div class="pain-icon policy">📋</div>
+    <div class="pain-content">
+      <div class="pain-audience">Pain Point #6 — Policymakers</div>
+      <h4>Guidelines Built on Half the Picture</h4>
+      <div class="desc">
+        National dietary guidelines in most countries are developed based on nutritional adequacy and disease prevention — without systematic consideration of environmental impact. Conversely, environmental food policies (procurement rules, carbon labeling mandates) are rarely tested against nutritional outcome data. The EU's Farm to Fork strategy, Canada's Food Guide, and WHO dietary recommendations all acknowledge this gap but lack the integrated analytical tools to close it. Policy is being written with half the evidence base.
+      </div>
+      <div class="consequence">Dietary recommendations that may inadvertently increase environmental harm, or sustainability mandates that could worsen nutritional outcomes in vulnerable populations. A 2024 analysis across 194 countries found that policy implementation scores for nutrition remain alarmingly low — and integration with environmental targets is even lower.</div>
+      <div class="nouri-response">An evidence platform where policymakers can model dietary scenarios and instantly see the combined nutritional quality, health outcome, and environmental impact — enabling guidelines that optimize across all three dimensions rather than trading one off against another.</div>
+    </div>
+  </div>
+
+  <div class="pain-card">
+    <div class="pain-icon policy">🌐</div>
+    <div class="pain-content">
+      <div class="pain-audience">Pain Point #7 — Policymakers</div>
+      <h4>The Cross-Border Evidence Gap</h4>
+      <div class="desc">
+        The EU and Canada are both advancing ambitious food sustainability agendas, but using fundamentally incompatible data systems and scoring models. HSR is dominant in some jurisdictions; Nutri-Score in others; FCS in research contexts. Environmental LCA data is regionalized differently. A policymaker in Brussels cannot compare the health-environment efficiency of a dietary intervention in Quebec against one in Copenhagen without extensive (and expensive) methodological harmonization.
+      </div>
+      <div class="consequence">International collaboration on food policy is stymied by data incompatibility. Best practices cannot transfer across jurisdictions. The global coordination that organizations like FAO, WHO, and the EAT-Lancet Commission call for remains aspirational rather than operational.</div>
+      <div class="nouri-response">A platform built from day one to support multiple scoring systems (HSR, FCS, HEFI, HENI, with Nutri-Score and EU frameworks planned) and regionalized LCA data — creating a common analytical language for cross-border environmental nutrition policy.</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- THE GAP LANDSCAPE -->
+<div class="section">
+  <div class="section-label">Market Gap Analysis</div>
+  <h2>What Exists vs. What's Needed</h2>
+  <p class="intro">Current tools address fragments of the problem. None integrate all three dimensions. NouriSphère occupies the only position in the market that unifies nutrition science, environmental LCA, and clinical health outcomes.</p>
+
+  <div class="gap-visual">
+    <h3>Existing Tool Coverage</h3>
+
+    <div class="gap-bar-group">
+      <div class="gap-bar-label">
+        <span class="name">Calorie/Macro Trackers (MyFitnessPal, Cronometer)</span>
+        <span class="status">Nutrition only — no environment, no clinical outcomes</span>
+      </div>
+      <div class="gap-bar-track"><div class="gap-bar-fill red" style="width:25%"></div></div>
+    </div>
+
+    <div class="gap-bar-group">
+      <div class="gap-bar-label">
+        <span class="name">Carbon Footprint Apps (Yuka, Giki Zero)</span>
+        <span class="status">Environment only — simplified, no health modeling</span>
+      </div>
+      <div class="gap-bar-track"><div class="gap-bar-fill orange" style="width:20%"></div></div>
+    </div>
+
+    <div class="gap-bar-group">
+      <div class="gap-bar-label">
+        <span class="name">Clinical Diet Tools (medical-grade, e.g. hospital dietetics)</span>
+        <span class="status">Clinical focus — no environment, not consumer-facing</span>
+      </div>
+      <div class="gap-bar-track"><div class="gap-bar-fill yellow" style="width:30%"></div></div>
+    </div>
+
+    <div class="gap-bar-group">
+      <div class="gap-bar-label">
+        <span class="name">Academic LCA Databases (SimaPro, openLCA)</span>
+        <span class="status">Environment research — no nutrition integration, expert-only</span>
+      </div>
+      <div class="gap-bar-track"><div class="gap-bar-fill yellow" style="width:20%"></div></div>
+    </div>
+
+    <div class="gap-bar-group">
+      <div class="gap-bar-label">
+        <span class="name">Dietary Guidelines Platforms (gov tools, EAT-Lancet)</span>
+        <span class="status">Policy reference — static, not interactive or personalized</span>
+      </div>
+      <div class="gap-bar-track"><div class="gap-bar-fill orange" style="width:15%"></div></div>
+    </div>
+
+    <div class="gap-bar-group" style="margin-top:32px; padding-top:16px; border-top:2px solid var(--soft-gray)">
+      <div class="gap-bar-label">
+        <span class="name" style="color:var(--forest); font-weight:700">NouriSphère (via EcoDish365)</span>
+        <span class="status" style="color:var(--forest)">Nutrition + Environment + Health Outcomes — unified</span>
+      </div>
+      <div class="gap-bar-track"><div class="gap-bar-fill green" style="width:90%"></div></div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- THE SYSTEMIC ROOT CAUSE -->
+<div class="section">
+  <div class="section-label">Root Cause Analysis</div>
+  <h2>Why This Problem Still Exists</h2>
+  <p class="intro">Understanding why the integration gap persists is essential for positioning NouriSphère as the structural solution, not just another feature improvement.</p>
+
+  <div class="pain-card">
+    <div class="pain-icon system">🏛️</div>
+    <div class="pain-content">
+      <div class="pain-audience">Root Cause #1</div>
+      <h4>Disciplinary Silos in Academia &amp; Government</h4>
+      <div class="desc">
+        Nutrition science, environmental science, and clinical medicine are separate departments with separate funding streams, separate journals, and separate career incentives. A researcher who publishes an integrated nutrition-environment-health study faces the paradox of fitting in nowhere: too environmental for nutrition journals, too nutritional for environmental journals, too theoretical for clinical ones. Government mirrors this: health ministries set dietary guidelines, environment ministries set emissions targets, and agriculture ministries set food policy — rarely in coordination.
+      </div>
+    </div>
+  </div>
+
+  <div class="pain-card">
+    <div class="pain-icon system">💰</div>
+    <div class="pain-content">
+      <div class="pain-audience">Root Cause #2</div>
+      <h4>Commercial Incentives Work Against Integration</h4>
+      <div class="desc">
+        Existing nutrition apps are venture-funded consumer products optimized for engagement metrics and subscription revenue, not integrated health-environment outcomes. There is no commercial incentive to add complex LCA analysis or DALY-based health modeling — these add development cost without clear monetization. Meanwhile, academic LCA tools are designed for expert researchers, not public use. The non-profit structure of NouriSphère is not a limitation — it is the only viable entity type for building this platform, because the mission requires integration that the market has no incentive to fund.
+      </div>
+    </div>
+  </div>
+
+  <div class="pain-card">
+    <div class="pain-icon system">🗄️</div>
+    <div class="pain-content">
+      <div class="pain-audience">Root Cause #3</div>
+      <h4>Data Integration Is Genuinely Hard</h4>
+      <div class="desc">
+        Linking a national nutrient composition database (5,000+ foods × 150+ nutrients) with regionalized environmental LCA data (18 impact categories × functional units) with validated health scoring systems (each with different input requirements) with clinical outcome models (DALY estimates from the Global Burden of Disease) is a non-trivial data engineering challenge that requires deep expertise in all four domains simultaneously. This rare combination of expertise is precisely what a dual-PhD McGill professor-led team brings — and why no one has built this before.
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SYNTHESIS -->
+<div class="section" style="padding-bottom:64px;">
+  <div class="section-label">Synthesis</div>
+  <h2>The NouriSphère Thesis</h2>
+  <p class="intro">Everything above distills into one foundational insight that drives every aspect of NouriSphère's design, strategy, and existence.</p>
+
+  <div class="synthesis-box">
+    <h3>The World Doesn't Need Another Nutrition App</h3>
+    <p>
+      The world needs the infrastructure layer that connects what we know about food's nutritional value, what we know about food's environmental cost, and what we know about food's clinical health consequences — and makes that integrated knowledge actionable for every person, every researcher, and every policymaker.
+    </p>
+    <p>
+      NouriSphère is not competing with calorie trackers or carbon calculators. It is building the category that should have existed from the beginning: <strong>environmental nutrition intelligence</strong> — the unified decision science of food.
+    </p>
+    <div class="highlight">
+      When a person opens NouriSphère and sees that their Tuesday dinner scored 3.8 on nutritional quality, would cost their health 0.12 DALYs over a lifetime, and carries a monetized environmental burden of $2.40 CAD in carbon, water, and land use — that is a moment that has never existed before in human history. That is the moment we are building toward.
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  NouriSphère — Problem Statement & Pain Points · Strategic Foundation Document · February 2026
+</div>
+
+</body>
+</html>
