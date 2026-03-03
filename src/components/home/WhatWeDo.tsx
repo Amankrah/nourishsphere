@@ -14,19 +14,19 @@ export default function WhatWeDo() {
       icon: <Users className="h-6 w-6" />,
       title: t("individuals_title"),
       description: t("individuals_description"),
-      href: "/about/mission" as const,
+      href: "/platform/individuals" as const,
     },
     {
       icon: <FlaskConical className="h-6 w-6" />,
       title: t("researchers_title"),
       description: t("researchers_description"),
-      href: "/about/methodology" as const,
+      href: "/platform/researchers" as const,
     },
     {
       icon: <Landmark className="h-6 w-6" />,
       title: t("policymakers_title"),
       description: t("policymakers_description"),
-      href: "/about/methodology" as const,
+      href: "/platform/policymakers" as const,
     },
   ];
 

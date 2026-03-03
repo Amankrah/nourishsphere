@@ -13,6 +13,7 @@ export default function Navbar() {
   const links = [
     { href: "/about/mission", label: t("about") },
     { href: "/problem", label: t("problem") },
+    { href: "/platform", label: t("platform") },
     { href: "/about/methodology", label: t("methodology") },
     { href: "/about/team", label: t("team") },
     { href: "/contact", label: t("contact") },
