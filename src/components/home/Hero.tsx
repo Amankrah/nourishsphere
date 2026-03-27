@@ -51,7 +51,7 @@ export default function Hero() {
             {t("cta_problem")}
           </Button>
           <Button
-            href="/about/methodology"
+            href="/platform#methodology"
             variant="secondary"
             size="lg"
             className="border-white/30 text-white hover:bg-white/5"

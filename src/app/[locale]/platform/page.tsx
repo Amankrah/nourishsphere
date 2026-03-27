@@ -1,9 +1,10 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
-import { Brain, Database, ShieldCheck, Network, Code2, FlaskConical, Heart, Leaf, Trash2, Clock, ShoppingCart, Refrigerator, Sprout } from "lucide-react";
+import { Users, FlaskConical, Landmark } from "lucide-react";
 import Section from "@/components/shared/Section";
 import SectionHeader from "@/components/shared/SectionHeader";
-import StatCard from "@/components/shared/StatCard";
 import Button from "@/components/shared/Button";
+import MethodologyDeepDive from "@/components/platform/MethodologyDeepDive";
+import { Link } from "@/i18n/navigation";
 
 export default async function PlatformPage({
   params,
@@ -14,19 +15,10 @@ export default async function PlatformPage({
   setRequestLocale(locale);
   const t = await getTranslations("platform");
 
-  const capabilities = [
-    { icon: <Brain className="h-5 w-5" />, title: t("cap1_title"), description: t("cap1_description") },
-    { icon: <Database className="h-5 w-5" />, title: t("cap2_title"), description: t("cap2_description") },
-    { icon: <ShieldCheck className="h-5 w-5" />, title: t("cap3_title"), description: t("cap3_description") },
-    { icon: <Network className="h-5 w-5" />, title: t("cap4_title"), description: t("cap4_description") },
-    { icon: <Code2 className="h-5 w-5" />, title: t("cap5_title"), description: t("cap5_description") },
-    { icon: <FlaskConical className="h-5 w-5" />, title: t("cap6_title"), description: t("cap6_description") },
-  ];
-
-  const tools = [
-    { icon: <ShoppingCart className="h-5 w-5" />, title: t("tool1_title"), description: t("tool1_description") },
-    { icon: <Refrigerator className="h-5 w-5" />, title: t("tool2_title"), description: t("tool2_description") },
-    { icon: <Sprout className="h-5 w-5" />, title: t("tool3_title"), description: t("tool3_description") },
+  const audiences = [
+    { icon: <Users className="h-5 w-5" />, title: t("audience1_title"), description: t("audience1_description") },
+    { icon: <FlaskConical className="h-5 w-5" />, title: t("audience2_title"), description: t("audience2_description") },
+    { icon: <Landmark className="h-5 w-5" />, title: t("audience3_title"), description: t("audience3_description") },
   ];
 
   const deployments = [
@@ -57,41 +49,38 @@ export default async function PlatformPage({
         </div>
       </section>
 
-      {/* Core Capabilities */}
+      {/* Bridge: product story without repeating full methodology */}
       <Section>
-        <SectionHeader label={t("capabilities_label")} heading={t("capabilities_heading")} align="center" />
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {capabilities.map((cap) => (
-            <div key={cap.title} className="rounded-2xl border border-soft-gray bg-white p-7">
-              <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-parchment text-living-green">
-                {cap.icon}
-              </div>
-              <h3 className="mb-2 font-serif text-lg text-deep-ink">{cap.title}</h3>
-              <p className="text-sm leading-relaxed text-mid-gray">{cap.description}</p>
-            </div>
-          ))}
+        <SectionHeader label={t("bridge_label")} heading={t("bridge_heading")} align="center" />
+        <div className="mx-auto max-w-2xl text-center">
+          <Link
+            href="/platform#methodology"
+            className="text-sm font-semibold text-living-green underline decoration-living-green/40 underline-offset-4 transition-colors hover:text-deep-forest"
+          >
+            {t("bridge_jump")}
+          </Link>
         </div>
       </Section>
 
-      {/* AI Tools */}
+      {/* Who it is for */}
       <Section className="bg-parchment/50">
-        <SectionHeader label={t("tools_label")} heading={t("tools_heading")} align="center" />
+        <SectionHeader label={t("audiences_label")} heading={t("audiences_heading")} description={t("audiences_description")} align="center" />
         <div className="grid gap-8 md:grid-cols-3">
-          {tools.map((tool) => (
-            <div key={tool.title} className="rounded-2xl border border-soft-gray bg-white p-8 text-center">
+          {audiences.map((item) => (
+            <div key={item.title} className="rounded-2xl border border-soft-gray bg-white p-8 text-center">
               <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-deep-forest/5 text-deep-forest">
-                {tool.icon}
+                {item.icon}
               </div>
-              <h3 className="mb-3 font-serif text-xl text-deep-ink">{tool.title}</h3>
-              <p className="text-sm leading-relaxed text-mid-gray">{tool.description}</p>
+              <h3 className="mb-3 font-serif text-xl text-deep-ink">{item.title}</h3>
+              <p className="text-sm leading-relaxed text-mid-gray">{item.description}</p>
             </div>
           ))}
         </div>
       </Section>
 
-      {/* Deployments */}
+      {/* Integrated toolkit */}
       <Section>
-        <SectionHeader label={t("deployment_label")} heading={t("deployment_heading")} description={t("deployment_description")} align="center" />
+        <SectionHeader label={t("meal_integration_label")} heading={t("meal_integration_heading")} description={t("meal_integration_description")} align="center" />
         <div className="grid gap-6 lg:grid-cols-3">
           {deployments.map((deploy) => (
             <div key={deploy.title} className="rounded-2xl border border-soft-gray bg-white p-7">
@@ -110,16 +99,7 @@ export default async function PlatformPage({
         </div>
       </Section>
 
-      {/* Impact Metrics */}
-      <Section className="bg-parchment/50">
-        <SectionHeader label={t("impact_label")} heading={t("impact_heading")} align="center" />
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          <StatCard value={t("impact_dietary")} label={t("impact_dietary_label")} description={t("impact_dietary_desc")} />
-          <StatCard value={t("impact_ghg")} label={t("impact_ghg_label")} description={t("impact_ghg_desc")} />
-          <StatCard value={t("impact_waste")} label={t("impact_waste_label")} description={t("impact_waste_desc")} />
-          <StatCard value={t("impact_productivity")} label={t("impact_productivity_label")} description={t("impact_productivity_desc")} />
-        </div>
-      </Section>
+      <MethodologyDeepDive />
 
       {/* CTA */}
       <section className="relative overflow-hidden bg-gradient-to-br from-deep-forest to-deep-ink px-6 py-20">
@@ -128,10 +108,23 @@ export default async function PlatformPage({
           <h2 className="font-serif text-3xl text-white md:text-4xl">{t("cta_heading")}</h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-white/60">{t("cta_description")}</p>
           <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-            <Button href="/contact" size="lg">Partner With Us</Button>
-            <Button href="/about/methodology" variant="secondary" size="lg" className="border-white/30 text-white hover:bg-white/5">
-              Our Methodology
+            <a
+              href="https://ecodish365.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-full bg-living-green px-8 py-4 text-base font-medium text-white transition-all duration-200 hover:bg-living-green/90"
+            >
+              {t("cta_button_live")}
+            </a>
+            <Button href="/contact" variant="secondary" size="lg" className="border-white/30 text-white hover:bg-white/5">
+              {t("cta_button_contact")}
             </Button>
+            <Link
+              href="/platform#methodology"
+              className="inline-flex items-center justify-center rounded-full border border-white/30 px-8 py-4 text-base font-medium text-white transition-all duration-200 hover:bg-white/5"
+            >
+              {t("cta_button_methodology")}
+            </Link>
           </div>
         </div>
       </section>

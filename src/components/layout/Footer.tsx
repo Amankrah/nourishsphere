@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import LanguageToggle from "./LanguageToggle";
+import LogoMark from "@/components/brand/LogoMark";
 
 export default function Footer() {
   const t = useTranslations("footer");
@@ -13,7 +14,8 @@ export default function Footer() {
         <div className="grid gap-12 md:grid-cols-4">
           {/* About Column */}
           <div className="md:col-span-1">
-            <h3 className="mb-4 font-serif text-lg text-white">
+            <h3 className="mb-4 flex items-center gap-2.5 font-serif text-lg text-white">
+              <LogoMark className="h-9 w-9 shrink-0" variant="light" />
               NourishSphere
             </h3>
             <p className="text-sm leading-relaxed text-white/60">
@@ -38,7 +40,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/about/methodology" className="text-sm transition-colors hover:text-white">
+                <Link href="/platform#methodology" className="text-sm transition-colors hover:text-white">
                   {nav("methodology")}
                 </Link>
               </li>

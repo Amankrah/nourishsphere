@@ -1,5 +1,5 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
-import { FileText, BarChart3, ShieldCheck, Globe, MapPin } from "lucide-react";
+import { FileText, BarChart3, DollarSign, BookOpen } from "lucide-react";
 import Section from "@/components/shared/Section";
 import SectionHeader from "@/components/shared/SectionHeader";
 import StatCard from "@/components/shared/StatCard";
@@ -17,14 +17,8 @@ export default async function PolicymakersPage({
   const outputs = [
     { icon: <FileText className="h-5 w-5" />, title: t("policymakers_output1_title"), description: t("policymakers_output1_description") },
     { icon: <BarChart3 className="h-5 w-5" />, title: t("policymakers_output2_title"), description: t("policymakers_output2_description") },
-    { icon: <ShieldCheck className="h-5 w-5" />, title: t("policymakers_output3_title"), description: t("policymakers_output3_description") },
-    { icon: <Globe className="h-5 w-5" />, title: t("policymakers_output4_title"), description: t("policymakers_output4_description") },
-  ];
-
-  const partners = [
-    { country: "Netherlands", body: "Ministry of Agriculture, Nature and Food Quality (LNV)", focus: "Household food waste reduction and dietary quality improvement" },
-    { country: "France", body: "Ministry of Agriculture and Food Sovereignty + INRAE", focus: "Professional kitchen optimization and sustainable food service" },
-    { country: "Germany", body: "Federal Ministry of Food and Agriculture (BMEL)", focus: "Farm-to-consumer transparency and verifiable sustainability claims" },
+    { icon: <DollarSign className="h-5 w-5" />, title: t("policymakers_output3_title"), description: t("policymakers_output3_description") },
+    { icon: <BookOpen className="h-5 w-5" />, title: t("policymakers_output4_title"), description: t("policymakers_output4_description") },
   ];
 
   return (
@@ -36,7 +30,7 @@ export default async function PolicymakersPage({
         <p className="mx-auto mt-4 max-w-2xl text-lg text-white/60">{t("policymakers_hero_description")}</p>
       </section>
 
-      {/* Policy Outputs */}
+      {/* Policy outputs */}
       <Section>
         <SectionHeader label={t("policymakers_outputs_label")} heading={t("policymakers_outputs_heading")} align="center" />
         <div className="grid gap-6 md:grid-cols-2">
@@ -52,54 +46,50 @@ export default async function PolicymakersPage({
         </div>
       </Section>
 
-      {/* Use Case: Farm-to-Consumer */}
+      {/* Meal-level framing */}
       <Section className="bg-parchment/50">
-        <SectionHeader label={t("policymakers_hero_label")} heading={t("deploy3_title")} description={t("deploy3_description")} align="center" />
+        <SectionHeader
+          label={t("policymakers_section_case_label")}
+          heading={t("policymakers_section_case_heading")}
+          description={t("policymakers_section_case_description")}
+          align="center"
+        />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          <StatCard value={t("deploy3_metric1")} label="Farm-Level GHG" description="Reduction in farm greenhouse gas emissions" />
-          <StatCard value={t("deploy3_metric2")} label="Consumer Trust" description="Increase in consumer trust via verifiable claims" />
-          <StatCard value={t("deploy3_metric3")} label="Farmer Income" description="Premium pricing through verified sustainability" />
-          <StatCard value={t("deploy3_metric4")} label="ZKP Verified" description="All sustainability claims cryptographically verified" />
+          <StatCard value={t("impact_dietary")} label={t("impact_dietary_label")} description={t("impact_dietary_desc")} />
+          <StatCard value={t("impact_ghg")} label={t("impact_ghg_label")} description={t("impact_ghg_desc")} />
+          <StatCard value={t("impact_waste")} label={t("impact_waste_label")} description={t("impact_waste_desc")} />
+          <StatCard value={t("impact_productivity")} label={t("impact_productivity_label")} description={t("impact_productivity_desc")} />
         </div>
       </Section>
 
-      {/* Government Partners */}
+      {/* Honest scope disclaimer */}
       <Section>
-        <SectionHeader label="GOVERNMENT PARTNERS" heading="Working with National Governments" description="EcoDish365 is validated in collaboration with government bodies across three EU Member States to prove technology and inform policy." align="center" />
-        <div className="grid gap-6 lg:grid-cols-3">
-          {partners.map((partner) => (
-            <div key={partner.country} className="rounded-2xl border border-soft-gray bg-white p-7">
-              <div className="mb-3 flex items-center gap-2">
-                <MapPin className="h-4 w-4 text-living-green" />
-                <p className="text-xs font-semibold uppercase tracking-wider text-living-green">{partner.country}</p>
-              </div>
-              <h3 className="mb-2 font-serif text-lg text-deep-ink">{partner.body}</h3>
-              <p className="text-sm leading-relaxed text-mid-gray">{partner.focus}</p>
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      {/* Verified Impact */}
-      <Section dark>
-        <div className="mx-auto max-w-3xl text-center">
-          <SectionHeader label={t("impact_label")} heading="Verified, Independently Audited Impact" description="All impact metrics are verified through hybrid measurement: ZKP-verifiable aggregates, IoT sensor data, validated surveys, and independent third-party life-cycle assessment audits." align="center" dark />
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            <StatCard dark value={t("impact_dietary")} label={t("impact_dietary_label")} description={t("impact_dietary_desc")} />
-            <StatCard dark value={t("impact_ghg")} label={t("impact_ghg_label")} description={t("impact_ghg_desc")} />
-            <StatCard dark value={t("impact_waste")} label={t("impact_waste_label")} description={t("impact_waste_desc")} />
-            <StatCard dark value={t("impact_productivity")} label={t("impact_productivity_label")} description={t("impact_productivity_desc")} />
-          </div>
+        <div className="mx-auto max-w-3xl rounded-2xl border border-soft-gray bg-white p-10 text-center">
+          <h2 className="font-serif text-2xl text-deep-ink">{t("policymakers_scope_heading")}</h2>
+          <p className="mt-4 text-sm leading-relaxed text-mid-gray">{t("policymakers_scope_description")}</p>
         </div>
       </Section>
 
       {/* CTA */}
-      <Section>
+      <Section dark>
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="font-serif text-3xl text-deep-ink">Engage with Evidence-Based Policy Tools</h2>
-          <p className="mt-4 text-mid-gray">Connect with us to explore EcoDish365 for scenario modeling, evidence briefs, and policy advisory services.</p>
-          <div className="mt-8">
-            <Button href="/contact" size="lg">Contact for Policy Advisory</Button>
+          <h2 className="font-serif text-3xl text-white">{t("policymakers_cta_heading")}</h2>
+          <p className="mt-4 text-white/60">{t("policymakers_cta_description")}</p>
+          <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+            <a
+              href="https://ecodish365.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-full bg-living-green px-8 py-4 text-base font-medium text-white transition-all duration-200 hover:bg-living-green/90"
+            >
+              {t("cta_button_live")}
+            </a>
+            <Button href="/contact" variant="secondary" size="lg" className="border-white/30 text-white hover:bg-white/5">
+              {t("cta_button_contact")}
+            </Button>
+            <Button href="/platform#methodology" variant="secondary" size="lg" className="border-white/30 text-white hover:bg-white/5">
+              {t("cta_button_methodology")}
+            </Button>
           </div>
         </div>
       </Section>

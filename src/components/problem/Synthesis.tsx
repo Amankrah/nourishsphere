@@ -49,7 +49,7 @@ export default function Synthesis() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="mt-10"
         >
-          <Button href="/about/methodology" size="lg">
+          <Button href="/platform#methodology" size="lg">
             {t("synthesis_cta")}
           </Button>
         </motion.div>

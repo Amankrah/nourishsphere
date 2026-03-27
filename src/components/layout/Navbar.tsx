@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Menu, X } from "lucide-react";
 import LanguageToggle from "./LanguageToggle";
+import LogoMark from "@/components/brand/LogoMark";
 
 export default function Navbar() {
   const t = useTranslations("nav");
@@ -14,7 +15,7 @@ export default function Navbar() {
     { href: "/about/mission", label: t("about") },
     { href: "/problem", label: t("problem") },
     { href: "/platform", label: t("platform") },
-    { href: "/about/methodology", label: t("methodology") },
+    { href: "/platform#methodology", label: t("methodology") },
     { href: "/about/team", label: t("team") },
     { href: "/contact", label: t("contact") },
   ];
@@ -23,7 +24,12 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 border-b border-soft-gray/50 bg-warm-white/80 backdrop-blur-md">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
+        <Link
+          href="/"
+          className="flex items-center gap-2.5"
+          aria-label={t("logo_aria")}
+        >
+          <LogoMark className="h-8 w-8 shrink-0" />
           <span className="font-serif text-xl text-deep-forest">
             NourishSphere
           </span>

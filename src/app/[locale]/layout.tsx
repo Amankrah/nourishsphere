@@ -10,7 +10,7 @@ import "@/app/globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "NourishSphere — Environmental Nutrition Intelligence",
+    default: "NourishSphere: Environmental Nutrition Intelligence",
     template: "%s | NourishSphere",
   },
   description:
