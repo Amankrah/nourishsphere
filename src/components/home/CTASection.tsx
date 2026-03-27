@@ -25,7 +25,7 @@ export default function CTASection() {
             {t("partner")}
           </Button>
           <Button
-            href="/about/mission"
+            href="/platform"
             variant="secondary"
             size="lg"
             className="border-white/30 text-white hover:bg-white/5"

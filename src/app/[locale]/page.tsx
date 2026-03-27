@@ -5,6 +5,7 @@ import WhatWeDo from "@/components/home/WhatWeDo";
 import GapSection from "@/components/home/GapSection";
 import CredibilityStrip from "@/components/home/CredibilityStrip";
 import LatestNews from "@/components/home/LatestNews";
+import FundersSection from "@/components/home/FundersSection";
 import CTASection from "@/components/home/CTASection";
 
 export default async function HomePage({
@@ -23,6 +24,7 @@ export default async function HomePage({
       <GapSection />
       <CredibilityStrip />
       <LatestNews />
+      <FundersSection />
       <CTASection />
     </>
   );

@@ -49,6 +49,11 @@ export default function Footer() {
                   {nav("team")}
                 </Link>
               </li>
+              <li>
+                <Link href="/support" className="text-sm transition-colors hover:text-white">
+                  {nav("support")}
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -61,6 +66,11 @@ export default function Footer() {
               <li>
                 <Link href="/contact" className="text-sm transition-colors hover:text-white">
                   {nav("contact")}
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="text-sm transition-colors hover:text-white">
+                  {t("support_funders")}
                 </Link>
               </li>
             </ul>

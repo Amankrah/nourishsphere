@@ -48,12 +48,12 @@ export function generatePageMetadata({
 
 export const organizationJsonLd = {
   "@context": "https://schema.org",
-  "@type": "ResearchOrganization",
+  "@type": "NGO",
   name: "NourishSphere",
   alternateName: "NouriSphère",
   url: BASE_URL,
   description:
-    "Quebec-registered non-profit building the world's first environmental nutrition intelligence platform.",
+    "Canadian non-profit promoting sustainable, healthy diets through technology for consumers, researchers, and policymakers. EcoDish365 is its flagship digital product for integrated nutrition and environmental food choices.",
   foundingLocation: {
     "@type": "Place",
     name: "Montreal, Quebec, Canada",

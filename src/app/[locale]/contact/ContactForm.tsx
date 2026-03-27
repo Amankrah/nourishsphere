@@ -42,6 +42,7 @@ export default function ContactForm() {
 
   const inquiryTypes = [
     { value: "general", label: t("form_type_general") },
+    { value: "funding", label: t("form_type_funding") },
     { value: "partnership", label: t("form_type_partnership") },
     { value: "media", label: t("form_type_media") },
     { value: "research", label: t("form_type_research") },

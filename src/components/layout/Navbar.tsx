@@ -17,6 +17,7 @@ export default function Navbar() {
     { href: "/platform", label: t("platform") },
     { href: "/platform#methodology", label: t("methodology") },
     { href: "/about/team", label: t("team") },
+    { href: "/support", label: t("support") },
     { href: "/contact", label: t("contact") },
   ];
 

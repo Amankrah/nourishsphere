@@ -1,0 +1,21 @@
+/* Scoped to body.support-print-mode only when the Support page is active */
+
+@media print {
+  @page {
+    margin: 14mm;
+    size: A4 portrait;
+  }
+
+  body.support-print-mode {
+    background: white !important;
+  }
+
+  body.support-print-mode header,
+  body.support-print-mode footer {
+    display: none !important;
+  }
+
+  body.support-print-mode main {
+    padding: 0 !important;
+  }
+}

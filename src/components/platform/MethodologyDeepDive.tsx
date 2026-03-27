@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { Star, Compass, Heart, Activity, Leaf, Database } from "lucide-react";
+import { Star, Compass, Heart, Activity, Leaf, Database, Globe2 } from "lucide-react";
 import Section from "@/components/shared/Section";
 import SectionHeader from "@/components/shared/SectionHeader";
 
@@ -16,6 +16,12 @@ export default async function MethodologyDeepDive() {
   const dataSources = [
     { icon: <Database className="h-5 w-5" />, title: t("cnf_title"), description: t("cnf_description") },
     { icon: <Database className="h-5 w-5" />, title: t("gbd_title"), description: t("gbd_description") },
+  ];
+
+  const nationalRows = [
+    { icon: <Globe2 className="h-5 w-5" />, title: t("national_canada_title"), description: t("national_canada_description") },
+    { icon: <Globe2 className="h-5 w-5" />, title: t("national_ghana_title"), description: t("national_ghana_description") },
+    { icon: <Globe2 className="h-5 w-5" />, title: t("national_rwanda_title"), description: t("national_rwanda_description") },
   ];
 
   return (
@@ -74,6 +80,26 @@ export default async function MethodologyDeepDive() {
               </div>
               <h3 className="mb-3 font-serif text-xl text-deep-ink">{source.title}</h3>
               <p className="text-sm leading-relaxed text-mid-gray">{source.description}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      <Section className="bg-parchment/30">
+        <SectionHeader
+          label={t("national_label")}
+          heading={t("national_heading")}
+          description={t("national_description")}
+          align="center"
+        />
+        <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-3">
+          {nationalRows.map((row) => (
+            <div key={row.title} className="rounded-2xl border border-soft-gray bg-white p-7">
+              <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-parchment text-living-green">
+                {row.icon}
+              </div>
+              <h3 className="mb-3 font-serif text-lg text-deep-ink">{row.title}</h3>
+              <p className="text-sm leading-relaxed text-mid-gray">{row.description}</p>
             </div>
           ))}
         </div>

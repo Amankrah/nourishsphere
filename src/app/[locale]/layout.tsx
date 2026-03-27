@@ -10,11 +10,11 @@ import "@/app/globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "NourishSphere: Environmental Nutrition Intelligence",
+    default: "NourishSphere: sustainable healthy eating for Canada",
     template: "%s | NourishSphere",
   },
   description:
-    "NourishSphere is building the world's first platform unifying nutritional science, environmental impact, and clinical health outcomes.",
+    "NourishSphere is a Canadian non-profit. We promote sustainable, healthy diets through open technology for consumers, researchers, and policymakers. EcoDish365 is our flagship product for year-round sustainable food choices.",
   metadataBase: new URL("https://nourishsphere.org"),
 };
 
